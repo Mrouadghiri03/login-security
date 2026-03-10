@@ -1,5 +1,7 @@
 package com.example.dummysecurity.ui.login;
 
+import android.content.Context;
+
 import com.example.dummysecurity.model.LoginRequest;
 import com.example.dummysecurity.model.LoginResponse;
 import com.example.dummysecurity.network.ApiClient;
@@ -35,7 +37,8 @@ public class LoginPresenter implements LoginContract.Presenter {
 
         LoginRequest request = new LoginRequest(username, password);
 
-        ApiClient.getApiService().login(request).enqueue(new Callback<LoginResponse>() {
+       // ApiClient.getApiService().login(request).enqueue(new Callback<LoginResponse>() {
+        ApiClient.getApiService((Context) view).login(request).enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 if (view == null) return;
