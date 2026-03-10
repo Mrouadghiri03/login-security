@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +22,8 @@ public class DetailsActivity extends AppCompatActivity implements DetailsContrac
     TextView tvRawToken;
     TextView tvDecodedPayload;
     private DetailsContract.Presenter presenter;
+    ProgressBar loader;
+    Button btnLogout ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +33,12 @@ public class DetailsActivity extends AppCompatActivity implements DetailsContrac
         // Initialisation des vues
         tvRawToken = findViewById(R.id.tvRawToken);
         tvDecodedPayload = findViewById(R.id.tvDecodedPayload);
+        loader = findViewById(R.id.loader);
+        btnLogout=findViewById(R.id.btnlogout);
 
-        findViewById(R.id.btnlogout).setOnClickListener(v -> onLogoutClicked());
+
+
+        btnLogout.setOnClickListener(v -> onLogoutClicked());
 
         // 1. Récupérer le token passé par LoginActivity
         String token = getIntent().getStringExtra("ACCESS_TOKEN");
@@ -68,43 +76,26 @@ public class DetailsActivity extends AppCompatActivity implements DetailsContrac
     }
     public void onLogoutClicked() {
 
-
-
             presenter.doLogout(this);
 
     }
 
-   /* public void loGout(String token) {
-        // Redirection vers la deuxième page avec le token
-        SharedPreferences pref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        pref.edit().clear().apply();
-        Intent intent = new Intent(this, LoginActivity.class);
-       // intent.putExtra("ACCESS_TOKEN", token);
-
-        //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
-        startActivity(intent);
-        finish();
-    }
-    */
 
     @Override
     public void showLoading() {
-       // loader.setVisibility(View.VISIBLE);
-      //  btnSignIn.setEnabled(false);
+       loader.setVisibility(View.VISIBLE);
+      btnLogout.setEnabled(false);
     }
 
     @Override
     public void hideLoading() {
-       // loader.setVisibility(View.GONE);
-       // btnSignIn.setEnabled(true);
+        loader.setVisibility(View.GONE);
+        btnLogout.setEnabled(true);
     }
 
     @Override
     public void onLogOutSuccess() {
-        // Redirection vers la deuxième page avec le token
         Intent intent = new Intent(this, LoginActivity.class);
-        // intent.putExtra("ACCESS_TOKEN", token);
 
         //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
@@ -117,9 +108,9 @@ public class DetailsActivity extends AppCompatActivity implements DetailsContrac
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
-//    @Override
-//    protected void onDestroy() {
-//        super.onDestroy();
-//        presenter.unbind(); // Éviter les fuites de mémoire
-//    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.unbind(); // Éviter les fuites de mémoire
+    }
 }

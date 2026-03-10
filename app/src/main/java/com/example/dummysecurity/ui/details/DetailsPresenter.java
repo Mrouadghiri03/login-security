@@ -1,15 +1,9 @@
 package com.example.dummysecurity.ui.details;
 
-import static androidx.core.content.ContextCompat.startActivity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 
-import com.example.dummysecurity.ui.login.LoginActivity;
-import com.example.dummysecurity.ui.login.LoginContract;
-import android.content.Context;
-import android.content.SharedPreferences;
 
 public class DetailsPresenter implements DetailsContract.Presenter{
 
@@ -31,8 +25,6 @@ public class DetailsPresenter implements DetailsContract.Presenter{
     public void unbind() {
         this.view = null;
     }
-
-
 
     @Override
     public void doLogout(Context context) {
