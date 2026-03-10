@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Token JWT reçu :"
+            android:textStyle="bold"
+            android:textColor="@color/design_default_color_primary"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvRawToken"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="#F0F0F0"
+            android:padding="8dp"
+            android:text="Token ici..."
+            android:textSize="12sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="#CCCCCC" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Payload Décodé (JSON) :"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_green_dark"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvDecodedPayload"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:lineSpacingExtra="4dp"
+            android:text="Le résultat s'affichera ici..."
+            android:typeface="monospace"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:text="Retour au Login" />
+
+    </LinearLayout>
+</ScrollView>
